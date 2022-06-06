@@ -18,3 +18,11 @@
 .categories {
     margin-bottom: 4rem;
 }
+
+.transactions {
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+}

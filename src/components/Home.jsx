@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.scss";
 import MainContiner from "./MainContainer";
 import Title from "./Title";
 import CategoryCard from "./CategoryCard";
+import TransactionCard from "./TransactionCard";
 
 const Home = () => {
   return (
@@ -21,6 +22,13 @@ const Home = () => {
             <CategoryCard category="Bills" money={0} />
             <CategoryCard category="Entertainment" money={0} />
             <CategoryCard category="Other" money={0} />
+          </div>
+        </div>
+
+        <div className={styles.transactions}>
+          <Title>Transactions</Title>
+          <div className={styles.content}>
+            <TransactionCard />
           </div>
         </div>
       </div>
