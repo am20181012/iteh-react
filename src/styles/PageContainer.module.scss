@@ -1,0 +1,11 @@
+.container {
+    padding: 2rem;
+    //display: flex;
+
+    //background-color: pink;
+    @media screen and (min-width: 1800px) {
+        padding: 2rem 0;
+        max-width: 1800px;
+        margin: 0 auto;
+    }
+}
