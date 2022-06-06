@@ -3,6 +3,7 @@ import "./styles/App.scss";
 import PageContainer from "./components/PageContainer";
 import Navbar from "./components/Navbar";
 import MobileNavbar from "./components/MobileNavbar";
+import Home from "./components/Home";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -15,7 +16,7 @@ function App() {
           <MobileNavbar />
         </div>
         <Routes>
-          <Route></Route>
+          <Route path="/" element={<Home />}></Route>
         </Routes>
       </PageContainer>
     </div>
