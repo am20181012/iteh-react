@@ -80,7 +80,15 @@ const CategoryCard = ({ category, money }) => {
         <div className={styles.iconContainer}>{style.icon}</div>
         <div className={styles.info}>
           <div className={styles.title}>{style.ctg}</div>
-          <div className={styles.money}>{`${style.sign}$${money}`}</div>
+          <div className={styles.money}>{`${
+            category === "Bilans"
+              ? money < 0
+                ? "-"
+                : money === 0
+                ? ""
+                : "+"
+              : style.sign
+          }$${Math.abs(money)}`}</div>
         </div>
       </div>
     </div>

@@ -13,12 +13,17 @@ const Home = ({
   billsExpense,
   entertainmentExpense,
   otherExpense,
+  bilans,
 }) => {
   return (
     <MainContiner optionClass={styles.container}>
       <div className={styles.main}>
         <div className={styles.title}>
           <Title>Home</Title>
+        </div>
+
+        <div className={styles.categories}>
+          <CategoryCard category="Bilans" money={bilans} />
         </div>
 
         <div className={styles.categories}>

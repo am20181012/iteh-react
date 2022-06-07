@@ -21,28 +21,35 @@ function App() {
   const [otherExpense, setOtherExpense] = useState(0);
   const [income, setIncome] = useState(0);
 
+  const [bilans, setBilans] = useState(0);
+
   const refreshMoney = (transaction) => {
     const cat = transaction.category;
     const money = parseFloat(transaction.money);
     switch (cat) {
       case "Product": {
         setProductExpense(productExpense + money);
+        setBilans(bilans - money);
         break;
       }
       case "Income": {
         setIncome(income + money);
+        setBilans(bilans + money);
         break;
       }
       case "Bills": {
         setBillsExpense(billsExpense + money);
+        setBilans(bilans - money);
         break;
       }
       case "Other": {
         setOtherExpense(otherExpense + money);
+        setBilans(bilans - money);
         break;
       }
       case "Entertainment": {
         setEntertainmentExpense(entertainmentExpense + money);
+        setBilans(bilans - money);
         break;
       }
     }
@@ -89,6 +96,7 @@ function App() {
                 billsExpense={billsExpense}
                 entertainmentExpense={entertainmentExpense}
                 otherExpense={otherExpense}
+                bilans={bilans}
               />
             }
           ></Route>
