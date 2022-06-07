@@ -55,7 +55,7 @@ function App() {
   const addTransaction = (transaction) => {
     transaction.id = id + 1;
     setId(id + 1);
-    setTransactions([...transactions, transaction]);
+    setTransactions([transaction, ...transactions]);
     refreshMoney(transaction);
   };
 
