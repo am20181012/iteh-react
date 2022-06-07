@@ -8,8 +8,35 @@ import Transaction from "./components/Transaction";
 import ExpenseCategory from "./components/ExpenseCategory";
 
 import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
 function App() {
+  var category = "Product";
+  const [transactions, setTransactions] = useState([]);
+  const [id, setId] = useState(0);
+
+  const setCategory = (category2) => {
+    category = category2;
+  };
+
+  const addTransaction = (transaction) => {
+    transaction.id = id + 1;
+    setId(id + 1);
+    setTransactions([...transactions, transaction]);
+  };
+
+  const addExpense = (transaction, event) => {
+    event.preventDefault();
+    transaction.category = category;
+    addTransaction(transaction);
+  };
+
+  const addIncome = (transaction, event) => {
+    event.preventDefault();
+    transaction.category = "Income";
+    addTransaction(transaction);
+  };
+
   return (
     <div className="App">
       <PageContainer>
@@ -18,7 +45,10 @@ function App() {
           <MobileNavbar />
         </div>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          <Route
+            path="/"
+            element={<Home transactions={transactions} />}
+          ></Route>
 
           <Route
             path="/addExpense"
@@ -27,7 +57,8 @@ function App() {
                 title="Add Expense"
                 formTitle="Add a New Expense"
                 buttonTitle="add a new expense"
-                category={<ExpenseCategory />}
+                category={<ExpenseCategory getCategory={setCategory} />}
+                getTransaction={addExpense}
               />
             }
           />
@@ -39,6 +70,7 @@ function App() {
                 title="Add Income"
                 formTitle="Add a New Income"
                 buttonTitle="add a new income"
+                getTransaction={addIncome}
               />
             }
           />

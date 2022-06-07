@@ -75,35 +75,41 @@ CategoryIcon.defaultProps = {
   category: "Product",
 };
 
-const TransactionCard = ({ category, date, money, description, title }) => {
+const TransactionCard = ({ transaction }) => {
   const [visible, setVisible] = useState(false);
   return (
     <div className={styles.container}>
       <div className={styles.inner}>
         {/* INFO */}
         <div className={styles.info}>
-          <CategoryIcon category={category} />
+          <CategoryIcon category={transaction.category} />
           <div className={styles.categoryContainer}>
-            <span className={styles.title}>{title}</span>
-            <span className={styles.category}>{category}</span>
-            <span className={styles.date}>{date}</span>
+            <span className={styles.title}>{transaction.title}</span>
+            <span className={styles.category}>{transaction.category}</span>
+            <span className={styles.date}>{transaction.date}</span>
             <div
               className={`${visible ? styles.descriptionActive : undefined} ${
                 styles.description
               }`}
             >
-              <p>{description}</p>
+              <p>{transaction.description}</p>
             </div>
           </div>
         </div>
 
         {/* MONEY */}
         <div className={styles.moneyContainer}>
-          <span>{`$${money}`}</span>
+          <span>{`${transaction.category === "Income" ? "+" : "-"}$${
+            transaction.money
+          }`}</span>
           <div
             className={styles.iconContainer}
             onClick={() => setVisible(!visible)}
-            style={description ? {} : { opacity: 0, pointerEvents: "none" }}
+            style={
+              transaction.description
+                ? {}
+                : { opacity: 0, pointerEvents: "none" }
+            }
           >
             {visible ? <RiArrowUpSLine /> : <RiArrowDownSLine />}
           </div>

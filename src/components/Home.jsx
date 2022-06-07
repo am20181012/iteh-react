@@ -6,7 +6,7 @@ import Title from "./Title";
 import CategoryCard from "./CategoryCard";
 import TransactionCard from "./TransactionCard";
 
-const Home = () => {
+const Home = ({ transactions }) => {
   return (
     <MainContiner optionClass={styles.container}>
       <div className={styles.main}>
@@ -28,7 +28,12 @@ const Home = () => {
         <div className={styles.transactions}>
           <Title>Transactions</Title>
           <div className={styles.content}>
-            <TransactionCard />
+            {transactions.map((transaction) => (
+              <TransactionCard
+                key={transaction.id}
+                transaction={transaction}
+              ></TransactionCard>
+            ))}
           </div>
         </div>
       </div>
