@@ -6,7 +6,14 @@ import Title from "./Title";
 import CategoryCard from "./CategoryCard";
 import TransactionCard from "./TransactionCard";
 
-const Home = ({ transactions }) => {
+const Home = ({
+  transactions,
+  income,
+  productExpense,
+  billsExpense,
+  entertainmentExpense,
+  otherExpense,
+}) => {
   return (
     <MainContiner optionClass={styles.container}>
       <div className={styles.main}>
@@ -17,11 +24,14 @@ const Home = ({ transactions }) => {
         <div className={styles.categories}>
           <Title>Categories</Title>
           <div className={styles.content}>
-            <CategoryCard category="Income" money={0} />
-            <CategoryCard category="Product" money={0} />
-            <CategoryCard category="Bills" money={0} />
-            <CategoryCard category="Entertainment" money={0} />
-            <CategoryCard category="Other" money={0} />
+            <CategoryCard category="Income" money={income} />
+            <CategoryCard category="Product" money={productExpense} />
+            <CategoryCard category="Bills" money={billsExpense} />
+            <CategoryCard
+              category="Entertainment"
+              money={entertainmentExpense}
+            />
+            <CategoryCard category="Other" money={otherExpense} />
           </div>
         </div>
 

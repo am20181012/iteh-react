@@ -15,6 +15,39 @@ function App() {
   const [transactions, setTransactions] = useState([]);
   const [id, setId] = useState(0);
 
+  const [productExpense, setProductExpense] = useState(0);
+  const [billsExpense, setBillsExpense] = useState(0);
+  const [entertainmentExpense, setEntertainmentExpense] = useState(0);
+  const [otherExpense, setOtherExpense] = useState(0);
+  const [income, setIncome] = useState(0);
+
+  const refreshMoney = (transaction) => {
+    const cat = transaction.category;
+    const money = parseFloat(transaction.money);
+    switch (cat) {
+      case "Product": {
+        setProductExpense(productExpense + money);
+        break;
+      }
+      case "Income": {
+        setIncome(income + money);
+        break;
+      }
+      case "Bills": {
+        setBillsExpense(billsExpense + money);
+        break;
+      }
+      case "Other": {
+        setOtherExpense(otherExpense + money);
+        break;
+      }
+      case "Entertainment": {
+        setEntertainmentExpense(entertainmentExpense + money);
+        break;
+      }
+    }
+  };
+
   const setCategory = (category2) => {
     category = category2;
   };
@@ -23,6 +56,7 @@ function App() {
     transaction.id = id + 1;
     setId(id + 1);
     setTransactions([...transactions, transaction]);
+    refreshMoney(transaction);
   };
 
   const addExpense = (transaction, event) => {
@@ -47,7 +81,16 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home transactions={transactions} />}
+            element={
+              <Home
+                transactions={transactions}
+                income={income}
+                productExpense={productExpense}
+                billsExpense={billsExpense}
+                entertainmentExpense={entertainmentExpense}
+                otherExpense={otherExpense}
+              />
+            }
           ></Route>
 
           <Route
